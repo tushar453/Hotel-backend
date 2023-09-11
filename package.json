@@ -8,9 +8,24 @@
     "uuid": "^9.0.0"
   },
   "scripts": {
-    
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start":"node server.js"
-
-}
+    "start": "node server.js",
+    "build": "webpack --config webpack.config.js"
+  },
+  "name": "server",
+  "version": "1.0.0",
+  "main": "server.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tushar453/Hotel-backend.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tushar453/Hotel-backend/issues"
+  },
+  "homepage": "https://github.com/tushar453/Hotel-backend#readme",
+  "description": ""
 }
