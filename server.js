@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const cors = require("cors");
+require('dotenv').config();
 const stripe = require('stripe')(
   'sk_test_51No1FeSB1ZsdGv2Y4eFmzAwnmaNTBnXWAqdOPaWhKFIgIbIOiAvKpS22EOcFbagt0d9VIO0xblZh2sdJ57DBbRb000HIUDfArX'
 );
@@ -148,8 +149,18 @@ console.log(temp);
 await room.save()
  
 resp.send('booking cancelled');
-})
+});
+app.get("/allbookings", async (req, resp) => {
+  let bookingsdata = await Booking.find();
+  resp.send(bookingsdata);
+  // console.log(bookingsdata);
+});
 
+app.get("/allusers", async (req, resp) => {
+  let usersdata = await User.find();
+  resp.send(usersdata);
+  // console.log(bookingsdata);
+});
 
 const port = process.env.PORT || 5000;
 
