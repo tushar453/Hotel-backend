@@ -13,7 +13,6 @@ const userSchema =new mongoose.Schema({
     // required : true
    },
 
-
    isAdmin:{
     type:Boolean , default:false
    }
@@ -22,7 +21,5 @@ const userSchema =new mongoose.Schema({
 } ,{
     timestamps : true,
 })
-
-
 
 module.exports = mongoose.model('users' , userSchema);

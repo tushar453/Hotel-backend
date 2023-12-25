@@ -6,7 +6,7 @@ const mongoose = require('mongoose');
 //   mongoose.connect("mongodb+srv://sharmatushar3454:Tushar2002@hotel-book.bbxhqnn.mongodb.net/Hotel-Room?retryWrites=true&w=majority")
 mongoose.connect(process.env.MONGODB_URL)
 var connection = mongoose.connection;
-
+console.log(process.env.MONGODB_URL);
 connection.on('error' , ()=>{
      console.log('failed')
  })

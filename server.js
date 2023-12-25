@@ -12,6 +12,7 @@ require("./db");
 const Products = require("./models/room");
 const User = require("./models/user");
 const Booking = require("./models/booking");
+const Contact  = require("./models/message");
 app.post("/create", async (req, resp) => {
   let data = Products(req.body);
   let result = await data.save();
@@ -36,7 +37,17 @@ app.post("/register", async (req, resp) => {
   let result = await newuser.save();
 
   resp.send("User Registered Successfully.Now Login to Continue");
+ 
 });
+
+app.post("/sendmessage", async (req, resp) => {
+  let newMessage = Contact(req.body);
+  let result = await newMessage.save();
+
+  resp.send("Message sent Succefully");
+ 
+});
+
 app.post("/login", async (req, resp) => {
   // let newuser  = User(req.body);
   // let result =await newuser.save();
@@ -50,6 +61,7 @@ app.post("/login", async (req, resp) => {
       name: user.name,
       email: user.email,
       isAdmin: user.isAdmin,
+      image:user.image,
       _id: user._id,
     };
     resp.send(temp);
@@ -102,7 +114,7 @@ app.post("/bookroom", async (req, res) => {
       totaldays,
       transactionid: "12345",
     });
-
+       
     const booking = await newbooking.save();
     res.send("Room Booked Successfully");
     
@@ -147,7 +159,6 @@ const temp = bookings.filter(booking => booking.bookingid.toString() !== booking
 room.currentbooking = temp
 console.log(temp);
 await room.save()
- 
 resp.send('booking cancelled');
 });
 app.get("/allbookings", async (req, resp) => {
@@ -155,16 +166,17 @@ app.get("/allbookings", async (req, resp) => {
   resp.send(bookingsdata);
   // console.log(bookingsdata);
 });
-
 app.get("/allusers", async (req, resp) => {
   let usersdata = await User.find();
   resp.send(usersdata);
   // console.log(bookingsdata);
 });
-
+app.get("/allmessages", async (req, resp) => {
+  let messagedata = await Contact.find();
+  resp.send(messagedata);
+  // console.log(bookingsdata);
+});
 const port = process.env.PORT || 5000;
-
-
 app.listen(port, () => {
   console.log(`server running on port ${port}`);
 });
